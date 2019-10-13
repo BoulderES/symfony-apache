@@ -24,4 +24,4 @@ COPY ./000-default.conf /etc/apache2/sites-enabled
 
 WORKDIR /var/www/html
 
-COPY --from=backend /app /var/www
+COPY --from=backend /app /app
