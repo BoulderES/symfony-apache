@@ -20,8 +20,15 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
     && docker-php-ext-install zip \
     && docker-php-ext-enable apcu
 
-COPY ./000-default.conf /etc/apache2/sites-enabled
+COPY ./000-default.conf /etc/apache2/sites-available
+RUN a2ensite 000-default.conf
 
-WORKDIR /var/www/html
+WORKDIR /var/www
+
+COPY ./build.sh ./
+
+RUN chmod +x ./build.sh
 
 COPY --from=backend /app /app
+#ENTRYPOINT [ "./build.sh" ]
+
