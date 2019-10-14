@@ -15,7 +15,7 @@ Change [/path/that/you/want], [project_name] and local port [8080] by your own..
 
 ```bash
 $ cd /path/that/you/want
-$ composer create-project symfony/skeleton project_XXX
+$ composer create-project symfony/skeleton project_name
 $ docker run -d -p 8080:80 --name project_name -v /path/that/you/want/project_name:/var/www/html boulder80/symfony-apache
 ```
 Go to http://localhost:8080.
