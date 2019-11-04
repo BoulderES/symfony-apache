@@ -17,7 +17,11 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
     && docker-php-ext-install pdo_mysql zip \
     && docker-php-ext-enable apcu \
     && docker-php-ext-configure gd \
-    && docker-php-ext-install gd
+    && docker-php-ext-install gd \
+    && apt-get -yqq install exiftool \
+    && docker-php-ext-configure exif \
+    && docker-php-ext-install exif \
+    && docker-php-ext-enable exif
 
 COPY ./000-default.conf /etc/apache2/sites-available
 RUN a2ensite 000-default.conf \
