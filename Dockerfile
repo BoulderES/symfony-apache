@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     openssl \
     zip unzip \
     mariadb-client \
-    libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
+    libfreetype6-dev libjpeg62-turbo-dev libpng-dev
 RUN apt-get -yqq install exiftool \
 RUN docker-php-ext-configure exif \
 RUN docker-php-ext-install exif \
