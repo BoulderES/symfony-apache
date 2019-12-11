@@ -12,6 +12,9 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
     zip unzip \
     mariadb-client \
     libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
+    librabbitmq-dev \
+    && pecl install amqp \
+    && docker-php-ext-enable amqp \
     && apt-get -yqq install exiftool \
     && docker-php-ext-configure exif \
     && docker-php-ext-install exif \
