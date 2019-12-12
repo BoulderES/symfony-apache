@@ -1,4 +1,4 @@
-FROM php:7.3.10-apache
+FROM php:7.4-apache
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
@@ -13,16 +13,13 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
     mariadb-client \
     libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
     librabbitmq-dev \
-    && pecl install amqp \
-    && docker-php-ext-enable amqp \
     && apt-get -yqq install exiftool \
     && docker-php-ext-configure exif \
     && docker-php-ext-install exif \
     && docker-php-ext-enable exif \
     && docker-php-ext-enable apcu \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install gd \
-    && docker-php-ext-configure zip --with-libzip \
+#    && docker-php-ext-configure zip --with-libzip \
+    && docker-php-ext-configure zip \
     && docker-php-ext-install pdo_mysql zip
 
 COPY ./000-default.conf /etc/apache2/sites-available
