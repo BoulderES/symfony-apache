@@ -25,6 +25,12 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
     && docker-php-ext-configure zip --with-libzip \
     && docker-php-ext-install pdo_mysql zip
 
-COPY ./000-default.conf /etc/apache2/sites-available
-RUN a2ensite 000-default.conf \
-    && a2enmod rewrite
+COPY server.crt /etc/apache2/ssl/server.crt
+COPY server.key /etc/apache2/ssl/server.key
+
+COPY ./000-default-ssl.conf /etc/apache2/sites-available
+COPY ./000-default-ssl.conf /etc/apache2/sites-available
+RUN a2ensite 000-default-ssl.conf \
+    && a2enmod rewrite \
+    && a2enmod ssl \
+    && service apache2 restart \
