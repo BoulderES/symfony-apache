@@ -2,7 +2,7 @@
 
 ### Features
 
--  Basic apache server for symfony apps development (only if you need something more than the built in php server) based on the [official php image](https://hub.docker.com/_/php) (tag [php:7.3.10-apache](https://hub.docker.com/layers/php/library/php/7.3.10-apache/images/sha256-f00c75e633d6bbc1b30d5156c06377e48c543263dfd2ac4d910b176386ad4fdf)) with a couple of changes to make symfony easy to run.
+-  Basic apache server for symfony apps development (only if you need something more than the built in php server) based on the [official php image](https://hub.docker.com/_/php) (tag [php:7.4-apache](https://hub.docker.com/layers/php/library/php/7.4-apache/images/sha256-c4bab708d7c150e88351d762a01738e91d83f17e10e866b8e32e758f91f50c04)) with a couple of changes to make symfony easy to run.
 
 ### Requeriments
 
