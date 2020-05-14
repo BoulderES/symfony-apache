@@ -13,6 +13,8 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
     mariadb-client \
     libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
     librabbitmq-dev \
+    libpq-dev \
+    supervisor \
     && pecl install amqp \
     && docker-php-ext-enable amqp \
     && apt-get -yqq install exiftool \
@@ -22,7 +24,9 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
     && docker-php-ext-enable apcu \
 #    && docker-php-ext-configure zip --with-libzip \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install pdo_mysql zip
+#    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install pdo pdo_pgsql \
+    && docker-php-ext-install zip
 
 COPY ./000-default.conf /etc/apache2/sites-available
 RUN a2ensite 000-default.conf \
